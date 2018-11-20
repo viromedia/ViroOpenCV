@@ -1,0 +1,11 @@
+Determining if the CXX compiler works failed with the following output:
+Change Dir: /Users/radvani/Source/ViroOpenCV/android/opencv-3.4.3/platforms/android/android-build/o4a/CMakeFiles/CMakeTmp
+
+Run Build Command:"/anaconda3/bin/ninja" "cmTC_375aa"
+[1/2] Building CXX object CMakeFiles/cmTC_375aa.dir/testCXXCompiler.cxx.o
+FAILED: CMakeFiles/cmTC_375aa.dir/testCXXCompiler.cxx.o 
+ccache /Users/radvani/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/radvani/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/radvani/Library/Android/sdk/ndk-bundle/sysroot   -isystem /Users/radvani/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /Users/radvani/Library/Android/sdk/ndk-bundle/sources/android/support/include -isystem /Users/radvani/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include -isystem /Users/radvani/Library/Android/sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -mfpu=neon -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11   -fPIE -o CMakeFiles/cmTC_375aa.dir/testCXXCompiler.cxx.o -c testCXXCompiler.cxx
+/bin/sh: ccache: command not found
+ninja: build stopped: subcommand failed.
+
+
