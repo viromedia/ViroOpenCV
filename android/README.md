@@ -10,18 +10,26 @@ cd android-build
 2. Run CMake
 
 ```
-cmake .. -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=[ANDROID VERSION] -DCMAKE_ANDROID_ARCH_ABI=[ARCH] -DCMAKE_ANDROID_NDK=[NDK_PATH] -DCMAKE_ANDROID_STL_TYPE=gnustl_static -DCMAKE_INSTALL_PREFIX=android-build
+cmake -GNinja -DINSTALL_ANDROID_EXAMPLES=OFF -DANDROID_EXAMPLES_WITH_LIBS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF -DWITH_OPENCL=OFF -DWITH_TBB=ON -DCMAKE_TOOLCHAIN_FILE={NDK_PATH}/build/cmake/android.toolchain.cmake -DANDROID_TOOLCHAIN=clang -DANDROID_STL=c++_static -DANDROID_SDK_TARGET={VERSION} -DBUILD_ANDROID_PROJECTS=ON -DANDROID_ABI={ARCH} -DANDROID_ARM_NEON=ON -DANDROID_PROJECTS_BUILD_TYPE=ANT ..
 ```
 where:
 
-[ARCH] is either ```armeabi-v7a``` or ```arm64-v8a```
-[NDK_PATH] points to your NDK installation (for me: /Users/radvani/Library/Android/sdk/ndk-bundle )
-[VERSION] indicates the android version (in general we've been using 21)
+{ARCH} can be either  ```armeabi-v7a``` or ```arm64-v8a```
+{NDK_PATH} points to your NDK installation (for me: /Users/radvani/Library/Android/sdk/ndk-bundle )
+{VERSION} indicates the android version (in general we've been using 21)
 
 Filled in, it would look something like this
 ```
-cmake .. -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=28 -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a -DCMAKE_ANDROID_NDK=/Users/radvani/Library/Android/sdk/ndk-bundle -DCMAKE_ANDROID_STL_TYPE=gnustl_static -DCMAKE_INSTALL_PREFIX=android-build
+cmake -GNinja -DINSTALL_ANDROID_EXAMPLES=OFF -DANDROID_EXAMPLES_WITH_LIBS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_DOCS=OFF -DBUILD_PERF_TESTS=OFF -DBUILD_TESTS=OFF -DWITH_OPENCL=OFF -DWITH_TBB=ON -DCMAKE_TOOLCHAIN_FILE=~/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_TOOLCHAIN=clang -DANDROID_STL=c++_static -DANDROID_SDK_TARGET=21 -DBUILD_ANDROID_PROJECTS=ON -DANDROID_ABI=arm64-v8a -DANDROID_ARM_NEON=ON -DANDROID_PROJECTS_BUILD_TYPE=ANT ..
 ```
 
-3. Follow steps 4 through 6 in Alternative A
+3. Build
+```
+ninja -j8
+ninja install
+```
+
+4. The libs will be in the android_build/lib and android_build/3rdparty/lib folders
+
+### IMPORTANT: Between building architectures, delete the entire android_build directory
 
